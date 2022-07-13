@@ -64,17 +64,21 @@ function updateScore(playerScore, computerScore, draw) {
 let button = document.querySelector('button')
 let scoreTab = document.querySelector('.scores')
 let h1 = document.createElement('h1')
+let closebtn = document.querySelector('#close')
 button.addEventListener("click", function () {
-  if (playerScore > computerScore) {
-    h1.textContent = `Congratulations!!! You have won ${playerScore} times`    
-  } else if (computerScore > playerScore ) {
-    h1.textContent = `You loose!!! Computer has won ${computerScore} times`
-  } else if (computerScore === playerScore) {
-    h1.textContent = `Player-${playerScore} : Computer-${computerScore} ::::::::: It's a tie`
-  }
-  scoreTab.appendChild(h1)
-  scoreTab.style.display = 'block'
-    
+  closebtn.style.display = 'block'
+    if (playerScore > computerScore) {
+      h1.textContent = `Congratulations!!! You have won ${playerScore} times`    
+    } else if (computerScore > playerScore ) {
+      h1.textContent = `You loose!!! Computer has won ${computerScore} times`
+    } else if (computerScore === playerScore) {
+      h1.textContent = `Player-${playerScore} : Computer-${computerScore} ::::::::: It's a tie`
+    }
+    scoreTab.appendChild(h1)
+    scoreTab.style.display = 'block'
+  
 })
-
-
+closebtn.addEventListener("click", function () {
+  scoreTab.style.display = 'none'
+  closebtn.style.display = 'none'
+})
