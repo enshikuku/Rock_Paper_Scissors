@@ -69,9 +69,12 @@ button.addEventListener("click", function () {
     h1.textContent = `Congratulations!!! You have won ${playerScore} times`    
   } else if (computerScore > playerScore ) {
     h1.textContent = `You loose!!! Computer has won ${computerScore} times`
+  } else if (computerScore === playerScore) {
+    h1.textContent = `Player-${playerScore} : Computer-${computerScore} ::::::::: It's a tie`
   }
   scoreTab.appendChild(h1)
   scoreTab.style.display = 'block'
+    
 })
 
 
