@@ -1,81 +1,77 @@
 const options = document.querySelectorAll(".options");
-    let pScore = 0;
-    let cScore = 0;
+let playerScore = 0
+let computerScore = 0
+let draw = 0
+options.forEach((option) => {
+  option.addEventListener("click", function () {
+    const playerInput = this.value
+    const cOptions = ["Scissors", "Rock", "Paper"]
+    const computerInput = cOptions[Math.floor(Math.random() * 3)]
+    compareInputs(playerInput, computerInput)
+    updateMoves(playerInput, computerInput)
+    updateScore(playerScore, computerScore, draw)
+  })
+})
 
-    options.forEach((option) => {
-      option.addEventListener("click", function () {
-        const pInput = this.value;
 
-        const cOptions = ["Rock", "Paper", "Scissors"];
-        const cInput = cOptions[Math.floor(Math.random() * 3)];
-        
-        updateMoves(pInput, cInput);
-        compareInputs(pInput, cInput);
-        updateScore();
-        if(checkWinner()){
-          pScore = cScore= 0;
-          updateScore();
-        }
-      });
-    });
-
-    function updateMoves(pInput, cInput){
-      document.getElementById("p-move").src = `img/${pInput}.svg`;
-      document.getElementById("c-move").src = `img/${cInput}.svg`;
+function compareInputs(playerInput, computerInput) {
+  const currentMatch = `${playerInput} vs ${computerInput}`;
+  if (playerInput === computerInput) {
+    alert(`${currentMatch} is a Draw`)
+    draw++
+    return
+  }
+  // If player input is rock
+  if (playerInput === "Rock") {
+    if (computerInput === "Scissors") {
+      alert(`${currentMatch} = You Win`)
+      playerScore++
+    } else {
+      alert(`${currentMatch} = Computer Wins`)
+      computerScore++
     }
-
-
-    function compareInputs(pInput, cInput) {
-      const currentMatch = `${pInput} vs ${cInput}`;
-      if (pInput === cInput) {
-        alert(`${currentMatch} is a Tie`);
-        return;
-      }
-
-      if (pInput === "Rock") {
-        if (cInput === "Scissors") {
-          alert(`${currentMatch} = You Win`);
-          pScore++;
-        } else {
-          alert(`${currentMatch} = Computer Wins`);
-          cScore++;
-        }
-      }
-      //Check for Paper
-      else if (pInput === "Paper") {
-        if (cInput === "Rock") {
-          alert(`${currentMatch} = You Win`);
-          pScore++;
-        } else {
-          alert(`${currentMatch} = Computer Wins`);
-          cScore++;
-        }
-      }
-      //Check for Scissors
-      else {
-        if (cInput === "Paper") {
-          alert(`${currentMatch} = You Win`);
-          pScore++;
-        } else {
-          alert(`${currentMatch} = Computer Wins`);
-          cScore++;
-        }
-      }
+  }
+  //If player input is Paper
+  else if (playerInput === "Paper") {
+    if (computerInput === "Rock") {
+      alert(`${currentMatch} = You Win`)
+      playerScore++
+    } else {
+      alert(`${currentMatch} = Computer Wins`)
+      computerScore++
     }
-
-    function updateScore() {
-      document.getElementById("p-score").textContent = pScore;
-      document.getElementById("c-score").textContent = cScore;
+  }
+  //If player input is scisors
+  else {
+    if (computerInput === "Paper") {
+      alert(`${currentMatch} = You Win`)
+      playerScore++
+    } else {
+      alert(`${currentMatch} = Computer Wins`)
+      computerScore++
     }
+  }
+}
+function updateMoves(playerInput, computerInput) {
+  document.querySelector('#playerMove').src = `img/${playerInput}.jpeg`
+  document.querySelector('#computerMove').src = `img/${computerInput}.jpeg`
+}
+function updateScore(playerScore, computerScore, draw) {
+  document.querySelector('#playerScore').textContent = playerScore
+  document.querySelector('#computerScore').textContent = computerScore
+  document.querySelector('#draw').textContent = draw  
+}
+let button = document.querySelector('button')
+let scoreTab = document.querySelector('.scores')
+let h1 = document.createElement('h1')
+button.addEventListener("click", function () {
+  if (playerScore > computerScore) {
+    h1.textContent = `Congratulations!!! You have won ${playerScore} times`    
+  } else if (computerScore > playerScore ) {
+    h1.textContent = `You loose!!! Computer has won ${computerScore} times`
+  }
+  scoreTab.appendChild(h1)
+  scoreTab.style.display = 'block'
+})
 
-    function checkWinner() {
-      if (pScore === 5 || cScore === 5) {
-        const winner =
-          pScore === 5
-            ? "You win the game! Congratulations!"
-            : "Computer wins the game! Try again next time!";
-        alert(winner);
-        return true;
-      }
-      return false;
-    }
+
