@@ -18,7 +18,6 @@
 img, .options {
   width: 140px;
   height: 140px;
-  border-radius: 50%;
   padding: 10px;
 }
 .player-choice {
@@ -48,10 +47,12 @@ img, .options {
   position: relative;
   top: 16px;
   border: 2px solid green;
+  border-radius: 50%;
   margin-left: 10px;
   display: none;
 }
 #close:hover {
+  border-radius: 50%;
   height: 50px;
   width: 50px;
   position: relative;
@@ -67,6 +68,9 @@ img, .options {
   flex-direction: column;
   align-items: center;
   font-size: 30px;
+}
+#afterClick {
+  display: none;
 }
 button {
   height: 50px;

@@ -2,6 +2,11 @@ const options = document.querySelectorAll(".options");
 let playerScore = 0
 let computerScore = 0
 let draw = 0
+let button = document.querySelector('button')
+let scoreTab = document.querySelector('.scores')
+let h1 = document.createElement('h1')
+let closebtn = document.querySelector('#close')
+let afterClick = document.querySelector('#afterClick')
 options.forEach((option) => {
   option.addEventListener("click", function () {
     const playerInput = this.value
@@ -10,6 +15,7 @@ options.forEach((option) => {
     compareInputs(playerInput, computerInput)
     updateMoves(playerInput, computerInput)
     updateScore(playerScore, computerScore, draw)
+    afterClick.style.display = 'block'
   })
 })
 
@@ -53,26 +59,23 @@ function compareInputs(playerInput, computerInput) {
   }
 }
 function updateMoves(playerInput, computerInput) {
-  document.querySelector('#playerMove').src = `img/${playerInput}.jpeg`
-  document.querySelector('#computerMove').src = `img/${computerInput}.jpeg`
+  document.querySelector('#playerMove').src = `img/${playerInput}.png`
+  document.querySelector('#computerMove').src = `img/${computerInput}.png`
 }
 function updateScore(playerScore, computerScore, draw) {
   document.querySelector('#playerScore').textContent = playerScore
   document.querySelector('#computerScore').textContent = computerScore
   document.querySelector('#draw').textContent = draw  
 }
-let button = document.querySelector('button')
-let scoreTab = document.querySelector('.scores')
-let h1 = document.createElement('h1')
-let closebtn = document.querySelector('#close')
+
 button.addEventListener("click", function () {
   closebtn.style.display = 'block'
     if (playerScore > computerScore) {
       h1.textContent = `Congratulations!!! You have won ${playerScore} times`    
     } else if (computerScore > playerScore ) {
-      h1.textContent = `You loose!!! Computer has won ${computerScore} times`
+      h1.textContent = `You lost!!! Computer has won ${computerScore} times`
     } else if (computerScore === playerScore) {
-      h1.textContent = `Player-${playerScore} : Computer-${computerScore} ::::::::: It's a tie`
+      h1.textContent = `It's a tie`
     }
     scoreTab.appendChild(h1)
     scoreTab.style.display = 'block'
