@@ -8,7 +8,21 @@
   box-sizing: border-box;
   font-family: Handlee;
 }
-
+.loader {
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  z-index: 99;
+  background-color: #6c3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.loader img {
+  width: 70%;
+  height: 85%;
+}
 .container {
   display: flex;
   flex-direction: column;

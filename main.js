@@ -7,6 +7,10 @@ let scoreTab = document.querySelector('.scores')
 let h1 = document.createElement('h1')
 let closebtn = document.querySelector('#close')
 let afterClick = document.querySelector('#afterClick')
+const load = document.querySelector('.loader')
+window.addEventListener("load", function(){
+    load.style.display = 'none'
+})
 options.forEach((option) => {
   option.addEventListener("click", function () {
     const playerInput = this.value
